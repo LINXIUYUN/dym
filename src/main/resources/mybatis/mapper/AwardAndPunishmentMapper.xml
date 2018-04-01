@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.linxiuyun.dym.mapper.AwardAndPunishmentMapper">
+
+	<resultMap id="AwardAndPunishmentResult" type="cn.linxiuyun.dym.model.AwardAndPunishment">
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="awardAndPunishmentColumns">
+	    <![CDATA[
+        	id as id,
+        	user_authentic_id as userAuthenticId,
+        	title as title,
+        	description as description,
+        	voucher_file_url as voucherFileUrl
+	    ]]>
+	</sql>
+	
+	<sql id="awardAndPunishmentDynamicWhere">
+		<!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用rapid中的Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="userAuthenticId != null">
+				and user_authentic_id = #{userAuthenticId}
+			</if>
+			<if test="title != null">
+				and title = #{title}
+			</if>
+			<if test="description != null">
+				and description = #{description}
+			</if>
+			<if test="voucherFileUrl != null">
+				and voucher_file_url = #{voucherFileUrl}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="save" parameterType="cn.linxiuyun.dym.model.AwardAndPunishment" useGeneratedKeys="true" keyProperty="id">
+	    <![CDATA[
+	        INSERT INTO
+	        award_and_punishment (
+	        	id ,
+	        	user_authentic_id ,
+	        	title ,
+	        	description ,
+	        	voucher_file_url 
+	        ) VALUES (
+	        	#{id,jdbcType=INTEGER} ,
+	        	#{userAuthenticId,jdbcType=INTEGER} ,
+	        	#{title,jdbcType=VARCHAR} ,
+	        	#{description,jdbcType=VARCHAR} ,
+	        	#{voucherFileUrl,jdbcType=VARCHAR} 
+	        )
+	    ]]>
+	</insert>
+    
+	<update id="update" parameterType="cn.linxiuyun.dym.model.AwardAndPunishment">
+	    <![CDATA[
+	        UPDATE award_and_punishment SET
+		        user_authentic_id = #{userAuthenticId,jdbcType=INTEGER} ,
+		        title = #{title,jdbcType=VARCHAR} ,
+		        description = #{description,jdbcType=VARCHAR} ,
+		        voucher_file_url = #{voucherFileUrl,jdbcType=VARCHAR} 
+			WHERE 
+				id = #{id} 
+	    ]]>
+	</update>
+	
+	<update id="updateParams" parameterType="cn.linxiuyun.dym.model.AwardAndPunishment">
+		UPDATE 
+			award_and_punishment
+		<set>
+			<if test="userAuthenticId != null">
+				user_authentic_id = #{userAuthenticId,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="voucherFileUrl != null">
+				voucher_file_url = #{voucherFileUrl,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE 
+			id = #{id} 
+	</update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+	    <![CDATA[
+	        delete from award_and_punishment where
+	        id = #{id} 
+	    ]]>
+    </delete>
+    
+    <select id="find" parameterType="java.lang.Integer" resultMap="AwardAndPunishmentResult">
+		select <include refid="awardAndPunishmentColumns" />
+	    <![CDATA[
+		    from award_and_punishment 
+	        where 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+    <select id="count" resultType="long" parameterType="cn.linxiuyun.dym.model.AwardAndPunishment">
+        select count(1) from award_and_punishment 
+		<include refid="awardAndPunishmentDynamicWhere"/>    
+    </select>
+    
+	<select id="getOne" resultMap="AwardAndPunishmentResult" parameterType="map">
+		select <include refid="awardAndPunishmentColumns"/> from award_and_punishment  
+		<include refid="awardAndPunishmentDynamicWhere"/>
+		<if test="orderBy != null">
+		order by ${orderBy}
+		</if>
+		limit 0,1
+	</select>
+	
+	<select id="getAll" resultMap="AwardAndPunishmentResult" parameterType="map">
+		select <include refid="awardAndPunishmentColumns"/> from award_and_punishment  
+		<include refid="awardAndPunishmentDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	<select id="getScrollData" resultMap="AwardAndPunishmentResult" parameterType="map">
+		select <include refid="awardAndPunishmentColumns" />
+	    	from award_and_punishment 
+		<include refid="awardAndPunishmentDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+		<if test="fromIndex != null and fromIndex > -1 and pageSize != null and pageSize > 0">
+			limit #{fromIndex},#{pageSize}
+		</if>
+    </select>
+    
+	<select id="getScrollCount" resultType="long" parameterType="map">
+		select count(1) from award_and_punishment 
+		<include refid="awardAndPunishmentDynamicWhere"/>
+	</select>
+	
+	
+	<!-- 以上为自动生成部分，使用中勿作改动；自己新增sql在以下部分去写。如库表变动，将生成的部分覆盖以上部分即可。 -->
+	
+	
+	
+</mapper>

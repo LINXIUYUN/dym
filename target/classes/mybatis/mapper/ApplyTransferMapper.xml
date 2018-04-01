@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.linxiuyun.dym.mapper.ApplyTransferMapper">
+
+	<resultMap id="ApplyTransferResult" type="cn.linxiuyun.dym.model.ApplyTransfer">
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="applyTransferColumns">
+	    <![CDATA[
+        	id as id,
+        	user_authentic_id as userAuthenticId,
+        	calss_info as calssInfo,
+        	component as component,
+        	transfer_area as transferArea,
+        	apply_date as applyDate,
+        	examine_date as examineDate,
+        	is_apply as isApply,
+        	is_agree as isAgree,
+        	examine_user_id as examineUserId,
+        	remark as remark
+	    ]]>
+	</sql>
+	
+	<sql id="applyTransferDynamicWhere">
+		<!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用rapid中的Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="userAuthenticId != null">
+				and user_authentic_id = #{userAuthenticId}
+			</if>
+			<if test="calssInfo != null">
+				and calss_info = #{calssInfo}
+			</if>
+			<if test="component != null">
+				and component = #{component}
+			</if>
+			<if test="transferArea != null">
+				and transfer_area = #{transferArea}
+			</if>
+			<if test="applyDate != null">
+				and apply_date = #{applyDate}
+			</if>
+			<if test="examineDate != null">
+				and examine_date = #{examineDate}
+			</if>
+			<if test="isApply != null">
+				and is_apply = #{isApply}
+			</if>
+			<if test="isAgree != null">
+				and is_agree = #{isAgree}
+			</if>
+			<if test="examineUserId != null">
+				and examine_user_id = #{examineUserId}
+			</if>
+			<if test="remark != null">
+				and remark = #{remark}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="save" parameterType="cn.linxiuyun.dym.model.ApplyTransfer" useGeneratedKeys="true" keyProperty="id">
+	    <![CDATA[
+	        INSERT INTO
+	        apply_transfer (
+	        	id ,
+	        	user_authentic_id ,
+	        	calss_info ,
+	        	component ,
+	        	transfer_area ,
+	        	apply_date ,
+	        	examine_date ,
+	        	is_apply ,
+	        	is_agree ,
+	        	examine_user_id ,
+	        	remark 
+	        ) VALUES (
+	        	#{id,jdbcType=INTEGER} ,
+	        	#{userAuthenticId,jdbcType=INTEGER} ,
+	        	#{calssInfo,jdbcType=VARCHAR} ,
+	        	#{component,jdbcType=VARCHAR} ,
+	        	#{transferArea,jdbcType=VARCHAR} ,
+	        	#{applyDate,jdbcType=TIMESTAMP} ,
+	        	#{examineDate,jdbcType=TIMESTAMP} ,
+	        	#{isApply,jdbcType=INTEGER} ,
+	        	#{isAgree,jdbcType=INTEGER} ,
+	        	#{examineUserId,jdbcType=INTEGER} ,
+	        	#{remark,jdbcType=VARCHAR} 
+	        )
+	    ]]>
+	</insert>
+    
+	<update id="update" parameterType="cn.linxiuyun.dym.model.ApplyTransfer">
+	    <![CDATA[
+	        UPDATE apply_transfer SET
+		        user_authentic_id = #{userAuthenticId,jdbcType=INTEGER} ,
+		        calss_info = #{calssInfo,jdbcType=VARCHAR} ,
+		        component = #{component,jdbcType=VARCHAR} ,
+		        transfer_area = #{transferArea,jdbcType=VARCHAR} ,
+		        apply_date = #{applyDate,jdbcType=TIMESTAMP} ,
+		        examine_date = #{examineDate,jdbcType=TIMESTAMP} ,
+		        is_apply = #{isApply,jdbcType=INTEGER} ,
+		        is_agree = #{isAgree,jdbcType=INTEGER} ,
+		        examine_user_id = #{examineUserId,jdbcType=INTEGER} ,
+		        remark = #{remark,jdbcType=VARCHAR} 
+			WHERE 
+				id = #{id} 
+	    ]]>
+	</update>
+	
+	<update id="updateParams" parameterType="cn.linxiuyun.dym.model.ApplyTransfer">
+		UPDATE 
+			apply_transfer
+		<set>
+			<if test="userAuthenticId != null">
+				user_authentic_id = #{userAuthenticId,jdbcType=INTEGER},
+			</if>
+			<if test="calssInfo != null">
+				calss_info = #{calssInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="component != null">
+				component = #{component,jdbcType=VARCHAR},
+			</if>
+			<if test="transferArea != null">
+				transfer_area = #{transferArea,jdbcType=VARCHAR},
+			</if>
+			<if test="applyDate != null">
+				apply_date = #{applyDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="examineDate != null">
+				examine_date = #{examineDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isApply != null">
+				is_apply = #{isApply,jdbcType=INTEGER},
+			</if>
+			<if test="isAgree != null">
+				is_agree = #{isAgree,jdbcType=INTEGER},
+			</if>
+			<if test="examineUserId != null">
+				examine_user_id = #{examineUserId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE 
+			id = #{id} 
+	</update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+	    <![CDATA[
+	        delete from apply_transfer where
+	        id = #{id} 
+	    ]]>
+    </delete>
+    
+    <select id="find" parameterType="java.lang.Integer" resultMap="ApplyTransferResult">
+		select <include refid="applyTransferColumns" />
+	    <![CDATA[
+		    from apply_transfer 
+	        where 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+    <select id="count" resultType="long" parameterType="cn.linxiuyun.dym.model.ApplyTransfer">
+        select count(1) from apply_transfer 
+		<include refid="applyTransferDynamicWhere"/>    
+    </select>
+    
+	<select id="getOne" resultMap="ApplyTransferResult" parameterType="map">
+		select <include refid="applyTransferColumns"/> from apply_transfer  
+		<include refid="applyTransferDynamicWhere"/>
+		<if test="orderBy != null">
+		order by ${orderBy}
+		</if>
+		limit 0,1
+	</select>
+	
+	<select id="getAll" resultMap="ApplyTransferResult" parameterType="map">
+		select <include refid="applyTransferColumns"/> from apply_transfer  
+		<include refid="applyTransferDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	<select id="getScrollData" resultMap="ApplyTransferResult" parameterType="map">
+		select <include refid="applyTransferColumns" />
+	    	from apply_transfer 
+		<include refid="applyTransferDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+		<if test="fromIndex != null and fromIndex > -1 and pageSize != null and pageSize > 0">
+			limit #{fromIndex},#{pageSize}
+		</if>
+    </select>
+    
+	<select id="getScrollCount" resultType="long" parameterType="map">
+		select count(1) from apply_transfer 
+		<include refid="applyTransferDynamicWhere"/>
+	</select>
+	
+	
+	<!-- 以上为自动生成部分，使用中勿作改动；自己新增sql在以下部分去写。如库表变动，将生成的部分覆盖以上部分即可。 -->
+	
+	
+	
+</mapper>

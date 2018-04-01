@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.linxiuyun.dym.mapper.UserAuthenticMapper">
+
+	<resultMap id="UserAuthenticResult" type="cn.linxiuyun.dym.model.UserAuthentic">
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="userAuthenticColumns">
+	    <![CDATA[
+        	id as id,
+        	username as username,
+        	password as password,
+        	user_type as userType
+	    ]]>
+	</sql>
+	
+	<sql id="userAuthenticDynamicWhere">
+		<!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用rapid中的Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="username != null">
+				and username = #{username}
+			</if>
+			<if test="password != null">
+				and password = #{password}
+			</if>
+			<if test="userType != null">
+				and user_type = #{userType}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="save" parameterType="cn.linxiuyun.dym.model.UserAuthentic" useGeneratedKeys="true" keyProperty="id">
+	    <![CDATA[
+	        INSERT INTO
+	        user_authentic (
+	        	id ,
+	        	username ,
+	        	password ,
+	        	user_type 
+	        ) VALUES (
+	        	#{id,jdbcType=INTEGER} ,
+	        	#{username,jdbcType=VARCHAR} ,
+	        	#{password,jdbcType=VARCHAR} ,
+	        	#{userType,jdbcType=INTEGER} 
+	        )
+	    ]]>
+	</insert>
+    
+	<update id="update" parameterType="cn.linxiuyun.dym.model.UserAuthentic">
+	    <![CDATA[
+	        UPDATE user_authentic SET
+		        username = #{username,jdbcType=VARCHAR} ,
+		        password = #{password,jdbcType=VARCHAR} ,
+		        user_type = #{userType,jdbcType=INTEGER} 
+			WHERE 
+				id = #{id} 
+	    ]]>
+	</update>
+	
+	<update id="updateParams" parameterType="cn.linxiuyun.dym.model.UserAuthentic">
+		UPDATE 
+			user_authentic
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=INTEGER},
+			</if>
+		</set>
+		WHERE 
+			id = #{id} 
+	</update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+	    <![CDATA[
+	        delete from user_authentic where
+	        id = #{id} 
+	    ]]>
+    </delete>
+    
+    <select id="find" parameterType="java.lang.Integer" resultMap="UserAuthenticResult">
+		select <include refid="userAuthenticColumns" />
+	    <![CDATA[
+		    from user_authentic 
+	        where 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+    <select id="count" resultType="long" parameterType="cn.linxiuyun.dym.model.UserAuthentic">
+        select count(1) from user_authentic 
+		<include refid="userAuthenticDynamicWhere"/>    
+    </select>
+    
+	<select id="getOne" resultMap="UserAuthenticResult" parameterType="map">
+		select <include refid="userAuthenticColumns"/> from user_authentic  
+		<include refid="userAuthenticDynamicWhere"/>
+		<if test="orderBy != null">
+		order by ${orderBy}
+		</if>
+		limit 0,1
+	</select>
+	
+	<select id="getAll" resultMap="UserAuthenticResult" parameterType="map">
+		select <include refid="userAuthenticColumns"/> from user_authentic  
+		<include refid="userAuthenticDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	<select id="getScrollData" resultMap="UserAuthenticResult" parameterType="map">
+		select <include refid="userAuthenticColumns" />
+	    	from user_authentic 
+		<include refid="userAuthenticDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+		<if test="fromIndex != null and fromIndex > -1 and pageSize != null and pageSize > 0">
+			limit #{fromIndex},#{pageSize}
+		</if>
+    </select>
+    
+	<select id="getScrollCount" resultType="long" parameterType="map">
+		select count(1) from user_authentic 
+		<include refid="userAuthenticDynamicWhere"/>
+	</select>
+	
+	
+	<!-- 以上为自动生成部分，使用中勿作改动；自己新增sql在以下部分去写。如库表变动，将生成的部分覆盖以上部分即可。 -->
+	
+	
+	
+</mapper>

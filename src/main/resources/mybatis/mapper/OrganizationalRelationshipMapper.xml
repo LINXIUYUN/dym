@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.linxiuyun.dym.mapper.OrganizationalRelationshipMapper">
+
+	<resultMap id="OrganizationalRelationshipResult" type="cn.linxiuyun.dym.model.OrganizationalRelationship">
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="organizationalRelationshipColumns">
+	    <![CDATA[
+        	id as id,
+        	user_authentic_id as userAuthenticId,
+        	mobile as mobile,
+        	address as address,
+        	permanent_address as permanentAddress,
+        	fulltime_education as fulltimeEducation,
+        	fulltime_university as fulltimeUniversity,
+        	onjob_education as onjobEducation,
+        	onjob_university as onjobUniversity,
+        	inner_party_suites as innerPartySuites,
+        	join_branch as joinBranch,
+        	join_work_date as joinWorkDate,
+        	work_palce_and_suites as workPalceAndSuites,
+        	material_status as materialStatus,
+        	material_remark as materialRemark,
+        	have_voluntary_book as haveVoluntaryBook,
+        	voluntary_book_remark as voluntaryBookRemark,
+        	info_real_staus as infoRealStaus,
+        	info_real_remark as infoRealRemark,
+        	have_illegal_record as haveIllegalRecord,
+        	illegal_record_remark as illegalRecordRemark,
+        	is_flow_member as isFlowMember,
+        	flow_date as flowDate,
+        	is_out_contact as isOutContact,
+        	out_contact_date as outContactDate,
+        	turn_out_province as turnOutProvince,
+        	turn_out_city as turnOutCity,
+        	turn_out_district as turnOutDistrict,
+        	remarks as remarks
+	    ]]>
+	</sql>
+	
+	<sql id="organizationalRelationshipDynamicWhere">
+		<!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用rapid中的Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="userAuthenticId != null">
+				and user_authentic_id = #{userAuthenticId}
+			</if>
+			<if test="mobile != null">
+				and mobile = #{mobile}
+			</if>
+			<if test="address != null">
+				and address = #{address}
+			</if>
+			<if test="permanentAddress != null">
+				and permanent_address = #{permanentAddress}
+			</if>
+			<if test="fulltimeEducation != null">
+				and fulltime_education = #{fulltimeEducation}
+			</if>
+			<if test="fulltimeUniversity != null">
+				and fulltime_university = #{fulltimeUniversity}
+			</if>
+			<if test="onjobEducation != null">
+				and onjob_education = #{onjobEducation}
+			</if>
+			<if test="onjobUniversity != null">
+				and onjob_university = #{onjobUniversity}
+			</if>
+			<if test="innerPartySuites != null">
+				and inner_party_suites = #{innerPartySuites}
+			</if>
+			<if test="joinBranch != null">
+				and join_branch = #{joinBranch}
+			</if>
+			<if test="joinWorkDate != null">
+				and join_work_date = #{joinWorkDate}
+			</if>
+			<if test="workPalceAndSuites != null">
+				and work_palce_and_suites = #{workPalceAndSuites}
+			</if>
+			<if test="materialStatus != null">
+				and material_status = #{materialStatus}
+			</if>
+			<if test="materialRemark != null">
+				and material_remark = #{materialRemark}
+			</if>
+			<if test="haveVoluntaryBook != null">
+				and have_voluntary_book = #{haveVoluntaryBook}
+			</if>
+			<if test="voluntaryBookRemark != null">
+				and voluntary_book_remark = #{voluntaryBookRemark}
+			</if>
+			<if test="infoRealStaus != null">
+				and info_real_staus = #{infoRealStaus}
+			</if>
+			<if test="infoRealRemark != null">
+				and info_real_remark = #{infoRealRemark}
+			</if>
+			<if test="haveIllegalRecord != null">
+				and have_illegal_record = #{haveIllegalRecord}
+			</if>
+			<if test="illegalRecordRemark != null">
+				and illegal_record_remark = #{illegalRecordRemark}
+			</if>
+			<if test="isFlowMember != null">
+				and is_flow_member = #{isFlowMember}
+			</if>
+			<if test="flowDate != null">
+				and flow_date = #{flowDate}
+			</if>
+			<if test="isOutContact != null">
+				and is_out_contact = #{isOutContact}
+			</if>
+			<if test="outContactDate != null">
+				and out_contact_date = #{outContactDate}
+			</if>
+			<if test="turnOutProvince != null">
+				and turn_out_province = #{turnOutProvince}
+			</if>
+			<if test="turnOutCity != null">
+				and turn_out_city = #{turnOutCity}
+			</if>
+			<if test="turnOutDistrict != null">
+				and turn_out_district = #{turnOutDistrict}
+			</if>
+			<if test="remarks != null">
+				and remarks = #{remarks}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="save" parameterType="cn.linxiuyun.dym.model.OrganizationalRelationship" useGeneratedKeys="true" keyProperty="id">
+	    <![CDATA[
+	        INSERT INTO
+	        organizational_relationship (
+	        	id ,
+	        	user_authentic_id ,
+	        	mobile ,
+	        	address ,
+	        	permanent_address ,
+	        	fulltime_education ,
+	        	fulltime_university ,
+	        	onjob_education ,
+	        	onjob_university ,
+	        	inner_party_suites ,
+	        	join_branch ,
+	        	join_work_date ,
+	        	work_palce_and_suites ,
+	        	material_status ,
+	        	material_remark ,
+	        	have_voluntary_book ,
+	        	voluntary_book_remark ,
+	        	info_real_staus ,
+	        	info_real_remark ,
+	        	have_illegal_record ,
+	        	illegal_record_remark ,
+	        	is_flow_member ,
+	        	flow_date ,
+	        	is_out_contact ,
+	        	out_contact_date ,
+	        	turn_out_province ,
+	        	turn_out_city ,
+	        	turn_out_district ,
+	        	remarks 
+	        ) VALUES (
+	        	#{id,jdbcType=INTEGER} ,
+	        	#{userAuthenticId,jdbcType=INTEGER} ,
+	        	#{mobile,jdbcType=VARCHAR} ,
+	        	#{address,jdbcType=VARCHAR} ,
+	        	#{permanentAddress,jdbcType=VARCHAR} ,
+	        	#{fulltimeEducation,jdbcType=VARCHAR} ,
+	        	#{fulltimeUniversity,jdbcType=VARCHAR} ,
+	        	#{onjobEducation,jdbcType=VARCHAR} ,
+	        	#{onjobUniversity,jdbcType=VARCHAR} ,
+	        	#{innerPartySuites,jdbcType=VARCHAR} ,
+	        	#{joinBranch,jdbcType=VARCHAR} ,
+	        	#{joinWorkDate,jdbcType=VARCHAR} ,
+	        	#{workPalceAndSuites,jdbcType=VARCHAR} ,
+	        	#{materialStatus,jdbcType=VARCHAR} ,
+	        	#{materialRemark,jdbcType=VARCHAR} ,
+	        	#{haveVoluntaryBook,jdbcType=VARCHAR} ,
+	        	#{voluntaryBookRemark,jdbcType=VARCHAR} ,
+	        	#{infoRealStaus,jdbcType=VARCHAR} ,
+	        	#{infoRealRemark,jdbcType=VARCHAR} ,
+	        	#{haveIllegalRecord,jdbcType=VARCHAR} ,
+	        	#{illegalRecordRemark,jdbcType=VARCHAR} ,
+	        	#{isFlowMember,jdbcType=VARCHAR} ,
+	        	#{flowDate,jdbcType=VARCHAR} ,
+	        	#{isOutContact,jdbcType=VARCHAR} ,
+	        	#{outContactDate,jdbcType=VARCHAR} ,
+	        	#{turnOutProvince,jdbcType=VARCHAR} ,
+	        	#{turnOutCity,jdbcType=VARCHAR} ,
+	        	#{turnOutDistrict,jdbcType=VARCHAR} ,
+	        	#{remarks,jdbcType=VARCHAR} 
+	        )
+	    ]]>
+	</insert>
+    
+	<update id="update" parameterType="cn.linxiuyun.dym.model.OrganizationalRelationship">
+	    <![CDATA[
+	        UPDATE organizational_relationship SET
+		        user_authentic_id = #{userAuthenticId,jdbcType=INTEGER} ,
+		        mobile = #{mobile,jdbcType=VARCHAR} ,
+		        address = #{address,jdbcType=VARCHAR} ,
+		        permanent_address = #{permanentAddress,jdbcType=VARCHAR} ,
+		        fulltime_education = #{fulltimeEducation,jdbcType=VARCHAR} ,
+		        fulltime_university = #{fulltimeUniversity,jdbcType=VARCHAR} ,
+		        onjob_education = #{onjobEducation,jdbcType=VARCHAR} ,
+		        onjob_university = #{onjobUniversity,jdbcType=VARCHAR} ,
+		        inner_party_suites = #{innerPartySuites,jdbcType=VARCHAR} ,
+		        join_branch = #{joinBranch,jdbcType=VARCHAR} ,
+		        join_work_date = #{joinWorkDate,jdbcType=VARCHAR} ,
+		        work_palce_and_suites = #{workPalceAndSuites,jdbcType=VARCHAR} ,
+		        material_status = #{materialStatus,jdbcType=VARCHAR} ,
+		        material_remark = #{materialRemark,jdbcType=VARCHAR} ,
+		        have_voluntary_book = #{haveVoluntaryBook,jdbcType=VARCHAR} ,
+		        voluntary_book_remark = #{voluntaryBookRemark,jdbcType=VARCHAR} ,
+		        info_real_staus = #{infoRealStaus,jdbcType=VARCHAR} ,
+		        info_real_remark = #{infoRealRemark,jdbcType=VARCHAR} ,
+		        have_illegal_record = #{haveIllegalRecord,jdbcType=VARCHAR} ,
+		        illegal_record_remark = #{illegalRecordRemark,jdbcType=VARCHAR} ,
+		        is_flow_member = #{isFlowMember,jdbcType=VARCHAR} ,
+		        flow_date = #{flowDate,jdbcType=VARCHAR} ,
+		        is_out_contact = #{isOutContact,jdbcType=VARCHAR} ,
+		        out_contact_date = #{outContactDate,jdbcType=VARCHAR} ,
+		        turn_out_province = #{turnOutProvince,jdbcType=VARCHAR} ,
+		        turn_out_city = #{turnOutCity,jdbcType=VARCHAR} ,
+		        turn_out_district = #{turnOutDistrict,jdbcType=VARCHAR} ,
+		        remarks = #{remarks,jdbcType=VARCHAR} 
+			WHERE 
+				id = #{id} 
+	    ]]>
+	</update>
+	
+	<update id="updateParams" parameterType="cn.linxiuyun.dym.model.OrganizationalRelationship">
+		UPDATE 
+			organizational_relationship
+		<set>
+			<if test="userAuthenticId != null">
+				user_authentic_id = #{userAuthenticId,jdbcType=INTEGER},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="permanentAddress != null">
+				permanent_address = #{permanentAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="fulltimeEducation != null">
+				fulltime_education = #{fulltimeEducation,jdbcType=VARCHAR},
+			</if>
+			<if test="fulltimeUniversity != null">
+				fulltime_university = #{fulltimeUniversity,jdbcType=VARCHAR},
+			</if>
+			<if test="onjobEducation != null">
+				onjob_education = #{onjobEducation,jdbcType=VARCHAR},
+			</if>
+			<if test="onjobUniversity != null">
+				onjob_university = #{onjobUniversity,jdbcType=VARCHAR},
+			</if>
+			<if test="innerPartySuites != null">
+				inner_party_suites = #{innerPartySuites,jdbcType=VARCHAR},
+			</if>
+			<if test="joinBranch != null">
+				join_branch = #{joinBranch,jdbcType=VARCHAR},
+			</if>
+			<if test="joinWorkDate != null">
+				join_work_date = #{joinWorkDate,jdbcType=VARCHAR},
+			</if>
+			<if test="workPalceAndSuites != null">
+				work_palce_and_suites = #{workPalceAndSuites,jdbcType=VARCHAR},
+			</if>
+			<if test="materialStatus != null">
+				material_status = #{materialStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="materialRemark != null">
+				material_remark = #{materialRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="haveVoluntaryBook != null">
+				have_voluntary_book = #{haveVoluntaryBook,jdbcType=VARCHAR},
+			</if>
+			<if test="voluntaryBookRemark != null">
+				voluntary_book_remark = #{voluntaryBookRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="infoRealStaus != null">
+				info_real_staus = #{infoRealStaus,jdbcType=VARCHAR},
+			</if>
+			<if test="infoRealRemark != null">
+				info_real_remark = #{infoRealRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="haveIllegalRecord != null">
+				have_illegal_record = #{haveIllegalRecord,jdbcType=VARCHAR},
+			</if>
+			<if test="illegalRecordRemark != null">
+				illegal_record_remark = #{illegalRecordRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="isFlowMember != null">
+				is_flow_member = #{isFlowMember,jdbcType=VARCHAR},
+			</if>
+			<if test="flowDate != null">
+				flow_date = #{flowDate,jdbcType=VARCHAR},
+			</if>
+			<if test="isOutContact != null">
+				is_out_contact = #{isOutContact,jdbcType=VARCHAR},
+			</if>
+			<if test="outContactDate != null">
+				out_contact_date = #{outContactDate,jdbcType=VARCHAR},
+			</if>
+			<if test="turnOutProvince != null">
+				turn_out_province = #{turnOutProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="turnOutCity != null">
+				turn_out_city = #{turnOutCity,jdbcType=VARCHAR},
+			</if>
+			<if test="turnOutDistrict != null">
+				turn_out_district = #{turnOutDistrict,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE 
+			id = #{id} 
+	</update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+	    <![CDATA[
+	        delete from organizational_relationship where
+	        id = #{id} 
+	    ]]>
+    </delete>
+    
+    <select id="find" parameterType="java.lang.Integer" resultMap="OrganizationalRelationshipResult">
+		select <include refid="organizationalRelationshipColumns" />
+	    <![CDATA[
+		    from organizational_relationship 
+	        where 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+    <select id="count" resultType="long" parameterType="cn.linxiuyun.dym.model.OrganizationalRelationship">
+        select count(1) from organizational_relationship 
+		<include refid="organizationalRelationshipDynamicWhere"/>    
+    </select>
+    
+	<select id="getOne" resultMap="OrganizationalRelationshipResult" parameterType="map">
+		select <include refid="organizationalRelationshipColumns"/> from organizational_relationship  
+		<include refid="organizationalRelationshipDynamicWhere"/>
+		<if test="orderBy != null">
+		order by ${orderBy}
+		</if>
+		limit 0,1
+	</select>
+	
+	<select id="getAll" resultMap="OrganizationalRelationshipResult" parameterType="map">
+		select <include refid="organizationalRelationshipColumns"/> from organizational_relationship  
+		<include refid="organizationalRelationshipDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	<select id="getScrollData" resultMap="OrganizationalRelationshipResult" parameterType="map">
+		select <include refid="organizationalRelationshipColumns" />
+	    	from organizational_relationship 
+		<include refid="organizationalRelationshipDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+		<if test="fromIndex != null and fromIndex > -1 and pageSize != null and pageSize > 0">
+			limit #{fromIndex},#{pageSize}
+		</if>
+    </select>
+    
+	<select id="getScrollCount" resultType="long" parameterType="map">
+		select count(1) from organizational_relationship 
+		<include refid="organizationalRelationshipDynamicWhere"/>
+	</select>
+	
+	
+	<!-- 以上为自动生成部分，使用中勿作改动；自己新增sql在以下部分去写。如库表变动，将生成的部分覆盖以上部分即可。 -->
+	
+	
+	
+</mapper>

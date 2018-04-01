@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.linxiuyun.dym.mapper.ApplyResultMapper">
+
+	<resultMap id="ApplyResultResult" type="cn.linxiuyun.dym.model.ApplyResult">
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="applyResultColumns">
+	    <![CDATA[
+        	id as id,
+        	user_authentic_id as userAuthenticId,
+        	apply_date as applyDate,
+        	examine_date as examineDate,
+        	is_agree as isAgree,
+        	examine_user_id as examineUserId,
+        	remark as remark
+	    ]]>
+	</sql>
+	
+	<sql id="applyResultDynamicWhere">
+		<!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用rapid中的Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="userAuthenticId != null">
+				and user_authentic_id = #{userAuthenticId}
+			</if>
+			<if test="applyDate != null">
+				and apply_date = #{applyDate}
+			</if>
+			<if test="examineDate != null">
+				and examine_date = #{examineDate}
+			</if>
+			<if test="isAgree != null">
+				and is_agree = #{isAgree}
+			</if>
+			<if test="examineUserId != null">
+				and examine_user_id = #{examineUserId}
+			</if>
+			<if test="remark != null">
+				and remark = #{remark}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="save" parameterType="cn.linxiuyun.dym.model.ApplyResult" useGeneratedKeys="true" keyProperty="id">
+	    <![CDATA[
+	        INSERT INTO
+	        apply_result (
+	        	id ,
+	        	user_authentic_id ,
+	        	apply_date ,
+	        	examine_date ,
+	        	is_agree ,
+	        	examine_user_id ,
+	        	remark 
+	        ) VALUES (
+	        	#{id,jdbcType=INTEGER} ,
+	        	#{userAuthenticId,jdbcType=INTEGER} ,
+	        	#{applyDate,jdbcType=TIMESTAMP} ,
+	        	#{examineDate,jdbcType=TIMESTAMP} ,
+	        	#{isAgree,jdbcType=INTEGER} ,
+	        	#{examineUserId,jdbcType=INTEGER} ,
+	        	#{remark,jdbcType=VARCHAR} 
+	        )
+	    ]]>
+	</insert>
+    
+	<update id="update" parameterType="cn.linxiuyun.dym.model.ApplyResult">
+	    <![CDATA[
+	        UPDATE apply_result SET
+		        user_authentic_id = #{userAuthenticId,jdbcType=INTEGER} ,
+		        apply_date = #{applyDate,jdbcType=TIMESTAMP} ,
+		        examine_date = #{examineDate,jdbcType=TIMESTAMP} ,
+		        is_agree = #{isAgree,jdbcType=INTEGER} ,
+		        examine_user_id = #{examineUserId,jdbcType=INTEGER} ,
+		        remark = #{remark,jdbcType=VARCHAR} 
+			WHERE 
+				id = #{id} 
+	    ]]>
+	</update>
+	
+	<update id="updateParams" parameterType="cn.linxiuyun.dym.model.ApplyResult">
+		UPDATE 
+			apply_result
+		<set>
+			<if test="userAuthenticId != null">
+				user_authentic_id = #{userAuthenticId,jdbcType=INTEGER},
+			</if>
+			<if test="applyDate != null">
+				apply_date = #{applyDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="examineDate != null">
+				examine_date = #{examineDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isAgree != null">
+				is_agree = #{isAgree,jdbcType=INTEGER},
+			</if>
+			<if test="examineUserId != null">
+				examine_user_id = #{examineUserId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE 
+			id = #{id} 
+	</update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+	    <![CDATA[
+	        delete from apply_result where
+	        id = #{id} 
+	    ]]>
+    </delete>
+    
+    <select id="find" parameterType="java.lang.Integer" resultMap="ApplyResultResult">
+		select <include refid="applyResultColumns" />
+	    <![CDATA[
+		    from apply_result 
+	        where 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+    <select id="count" resultType="long" parameterType="cn.linxiuyun.dym.model.ApplyResult">
+        select count(1) from apply_result 
+		<include refid="applyResultDynamicWhere"/>    
+    </select>
+    
+	<select id="getOne" resultMap="ApplyResultResult" parameterType="map">
+		select <include refid="applyResultColumns"/> from apply_result  
+		<include refid="applyResultDynamicWhere"/>
+		<if test="orderBy != null">
+		order by ${orderBy}
+		</if>
+		limit 0,1
+	</select>
+	
+	<select id="getAll" resultMap="ApplyResultResult" parameterType="map">
+		select <include refid="applyResultColumns"/> from apply_result  
+		<include refid="applyResultDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+	</select>
+	
+	<select id="getScrollData" resultMap="ApplyResultResult" parameterType="map">
+		select <include refid="applyResultColumns" />
+	    	from apply_result 
+		<include refid="applyResultDynamicWhere"/>
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+		<if test="fromIndex != null and fromIndex > -1 and pageSize != null and pageSize > 0">
+			limit #{fromIndex},#{pageSize}
+		</if>
+    </select>
+    
+	<select id="getScrollCount" resultType="long" parameterType="map">
+		select count(1) from apply_result 
+		<include refid="applyResultDynamicWhere"/>
+	</select>
+	
+	
+	<!-- 以上为自动生成部分，使用中勿作改动；自己新增sql在以下部分去写。如库表变动，将生成的部分覆盖以上部分即可。 -->
+	
+	
+	
+</mapper>

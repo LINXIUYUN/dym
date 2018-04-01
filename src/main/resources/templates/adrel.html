@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>新闻传播学院党员后台管理系统</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      function show() {
+        document.getElementById('a').style.display = 'block';
+      }
+
+      function hide() {
+        document.getElementById('a').style.display = 'none';
+      }
+    </script>
+<style type="text/css">
+   
+      .demo {
+          display: -webkit-flex;
+          text-align: center;
+      }
+      .demo .item:nth-child(1) {
+         background-color: #fff;
+      }
+      .demo .item {
+          font-size: 14px;
+          line-height: 30px;
+          border-bottom: 1px;
+          border-left: 1px;
+          border-right: 1px;
+          border-top: 1px;
+          border-style: solid;
+          border-color: #000ï¼›;
+          color:#CC0F16;
+      }
+      textarea{width: 100%}
+      .item input{width: 100%}
+  </style>
+  </head>
+  <body style="padding-top: 50px">  
+     <nav class="navbar navbar-inverse navbar-fixed-top ">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">新闻与传播学院党员后台管理系统</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="">新消息<img src="images/con1.png"><p style="position: absolute;right: 23%;top: 28%;color: #fff">1</p></a></li>
+               
+                <li><a><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Hi,欢迎张三</a></li>
+                <li><a>退出</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+     </nav> 
+
+   <nav class="navbar navbar-inverse navbar-fixed-top col-md-2" id="sidebar-wrapper" role="navigation" style="margin-top: 51px;background-color: #f2f2f2;border: none;width: 10%;height: 100%">
+             <ul class="nav sidebar-nav">
+                 <li class="sidebar-brand" >
+                    <a href="ad.html">
+                      首页
+                    </a>
+                </li>
+                <li>
+                    <a href="adinfo.html">个人信息</a>
+                </li>
+                <li>
+                    <a href="adapp.html">入党申请待核实</a>
+                </li>
+                <li>
+                    <a href="addans.html">奖惩信息待核实</a>
+                </li>
+                <li>
+                    <a href="#">组织关系调动</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="col-md-10" style="width: 90%;margin-left: 10%;padding: 0px">
+            <nav class="navbar navbar-default" style="border: none;">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+       
+               <form class="navbar-form navbar-right" role="search">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="搜索">
+                  </div>
+                  <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </form>
+              </div><!-- /.container-fluid -->
+            </nav>
+            <div class="container-fluid">
+
+           <div class="col-md-12" style="border-bottom: 1px solid #f2f2f2;"><h3 style="margin-top:0px;color: #337ab7;">组织关系调动</h3></div>
+            <div class="col-md-7" style="padding: 40px 50px 20px 50px;">
+                <table class="table table-hover" style="text-align: center;">
+                    <tr class="active">
+                     <td>
+                        姓名
+                     </td>
+                      <td>
+                        专业班级
+                     </td>
+                      <td>
+                        成分
+                     </td>
+                      <td>
+                        转向地区
+                     </td>
+                     <td>
+                       是否审核
+                     </td>
+                   </tr>
+
+                   <tr onclick="show()">
+                     <td>
+                        王小试
+                     </td>
+                      <td>
+                        新闻专业1班
+                     </td>
+                      <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions3" id="inlineRadio1" value="option1"> 通过
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions3" id="inlineRadio2" value="option2"> 不通过
+                        </label>
+                     </td>
+                   </tr>
+
+
+                   <tr onclick="show()">
+                     <td>
+                        张小想
+                     </td>
+                      <td>
+                        新闻专业2班
+                     </td>
+                     <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions4" id="inlineRadio1" value="option1"> 通过
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions4" id="inlineRadio2" value="option2"> 不通过
+                        </label>
+                     </td>
+                   </tr>
+
+                    <tr onclick="show()">
+                     <td>
+                        王小试
+                     </td>
+                      <td>
+                        新闻专业1班
+                     </td>
+                      <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions3" id="inlineRadio1" value="option1"> 通过
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions3" id="inlineRadio2" value="option2"> 不通过
+                        </label>
+                     </td>
+                   </tr>
+
+
+                   <tr onclick="show()">
+                     <td>
+                        张小想
+                     </td>
+                      <td>
+                        新闻专业2班
+                     </td>
+                     <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions4" id="inlineRadio1" value="option1"> 通过
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions4" id="inlineRadio2" value="option2"> 不通过
+                        </label>
+                     </td>
+                   </tr>
+
+                    <tr onclick="show()">
+                     <td>
+                        王小试
+                     </td>
+                      <td>
+                        新闻专业1班
+                     </td>
+                      <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions3" id="inlineRadio1" value="option1"> 通过
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions3" id="inlineRadio2" value="option2"> 不通过
+                        </label>
+                     </td>
+                   </tr>
+
+
+                   <tr onclick="show()">
+                     <td>
+                        张小想
+                     </td>
+                      <td>
+                        新闻专业2班
+                     </td>
+                     <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions4" id="inlineRadio1" value="option1"> 通过
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions4" id="inlineRadio2" value="option2"> 不通过
+                        </label>
+                     </td>
+                   </tr>
+
+                   <tr onclick="show()">
+                     <td>
+                        王史
+                     </td>
+                      <td>
+                        新闻专业1班
+                     </td>
+                      <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions5" id="inlineRadio1" value="option1"> 通过
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="inlineRadioOptions5" id="inlineRadio2" value="option2"> 不通过
+                        </label>
+                     </td>
+                   </tr>
+                   <tr onclick="show()">
+                     <td>
+                        王信息
+                     </td>
+                      <td>
+                        新闻专业2班
+                     </td>
+                      <td>
+                        党员
+                     </td>
+                      <td>
+                        北京朝阳区
+                     </td>
+                     <td>
+                       已审核
+                     </td>
+                   </tr>
+                                                                                                                 
+                </table> <button class="btn btn-default" style="width: 100%;">确定</button>
+
+              <nav aria-label="Page navigation" class="text-center">
+                <ul class="pagination">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+             <div class="col-md-5 text-center" style="padding: 40px 100px 20px 100px;display: none;" id="a" >
+              <div class="demo demo1">
+            <div class="item" style="width:16.5%">姓名</div>
+            <div class="item" style="width:16.5%">王晓伟</div>
+            <div class="item" style="width:16.5%">出生年月</div>
+            <div class="item" style="width:16.5%">1996-12-05</div>
+            <div class="item" style="width:16.5%">籍贯</div>
+            <div class="item" style="width:16.5%">湖北武汉</div>
+          </div>
+
+    <div class="demo demo1">
+            <div class="item" style="width:25%">公民身份号码</div>
+            <div class="item" style="width:25%">254585499604541545</div>
+            <div class="item" style="width:25%">联系电话</div>
+            <div class="item" style="width:25%">1582454555</div>
+            
+          </div>
+    
+    <div class="demo demo1">
+            <div class="item" style="width:25%">家庭住址</div>
+            <div class="item" style="width:25%">湖北省武汉市洪山区珞喻路461号</div>
+            <div class="item" style="width:25%">户籍地址</div>
+            <div class="item" style="width:25%">湖北武汉</div>
+            
+          </div>
+    <div class="demo demo1">
+            <div class="item" style="width:20%;border-bottom-color: #fff;">学历</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">全日制教育</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">是</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">毕业院校系及专业</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">武汉体育学院新闻专业</div>
+            
+          </div>
+
+    
+    <div class="demo demo1">
+            <div class="item" style="width:20%;border-top-color: #fff;border-bottom-color: #fff;">学位</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">在职教育</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">无</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">毕业院校系及专业</div>
+            <div class="item" style="width:20%;border-bottom-color: #fff;">无</div>
+            
+          </div>
+
+    
+
+
+    <div class="demo demo1">
+            <div class="item" style="width:25%">入党时间</div>
+            <div class="item" style="width:25%">2017-02-25</div>
+            <div class="item" style="width:25%">现任党内职务</div>
+            <div class="item" style="width:25%">无</div>
+            
+          </div>
+
+    <div class="demo demo1">
+            <div class="item" style="width:25%">入党时所在党支部</div>
+            <div class="item" style="width:75%">武汉体育学院</div>
+            
+            
+          </div>
+
+    <div class="demo demo1">
+            <div class="item" style="width:25%">参加工作时间</div>
+            <div class="item" style="width:25%">无</div>
+            <div class="item" style="width:25%">现工作单位及职务</div>
+            <div class="item" style="width:25%">无</div>
+            
+          </div>
+
+    <div class="demo demo1">
+            <div class="item" style="width:20%;border-bottom-color: #fff;"></div>
+            <div class="item" style="width:30%">入党材料是否齐全</div>
+            <div class="item" style="width:16.5%">是</div>
+            <div class="item" style="width:16.5%">备注</div>
+            <div class="item" style="width:16.5%">无</div>
+            
+          </div>
+
+    <div class="demo demo1">
+            <div class="item" style="width:20%;border-bottom-color: #fff;border-top-color: #fff;">党员档案情况</div>
+            <div class="item" style="width:30%">是否有入党志愿书</div>
+            <div class="item" style="width:16.5%">是</div>
+            <div class="item" style="width:16.5%">备注</div>
+            <div class="item" style="width:16.5%">无</div>
+            
+          </div>
+    <div class="demo demo1">
+            <div class="item" style="width:20%;border-bottom-color: #fff;border-top-color: #fff;"></div>
+            <div class="item" style="width:30%">入党信息是否真实准确</div>
+            <div class="item" style="width:16.5%">是</div>
+            <div class="item" style="width:16.5%">备注</div>
+            <div class="item" style="width:16.5%">无</div>
+            
+          </div>
+
+    <div class="demo demo1">
+            <div class="item" style="width:20%;border-top-color: #fff;"></div>
+            <div class="item" style="width:30%">是否存在违规入党或假党员情况</div>
+            <div class="item" style="width:16.5%">否</div>
+            <div class="item" style="width:16.5%">备注</div>
+            <div class="item" style="width:16.5%">无</div>
+            
+          </div>
+    <div class="demo demo1">
+            <div class="item" style="width:20%">缴纳党费和参加</div>
+            <div class="item" style="width:14%">是否属于流动党员</div>
+            <div class="item" style="width:16%">否</div>
+            <div class="item" style="width:20%">流出时间</div>
+            <div class="item" style="width:30%">无</div>
+            
+          </div>
+          <div class="demo demo1">
+            <div class="item" style="width:20%">党支部活动情况</div>
+            <div class="item" style="width:14%">是否属于失联党员</div>
+            <div class="item" style="width:16%">否</div>
+            <div class="item" style="width:20%">失联时间</div>
+            <div class="item" style="width:30%">无</div>
+            
+          </div>
+
+        <div class="demo demo1">
+            <div class="item" style="width:100%">组织关系转出所在地</div>
+            <div class="item" style="width:100%">北京市朝阳区</div>
+            
+            
+          </div>
+ 
+    <div class="demo demo1">
+            <div class="item" style="width:20%">备注</div>
+            <div class="item" style="width:80%">无</div>
+            
+            
+          </div>
+            </div>
+            
+             </div>
+        </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>新闻传播学院党员后台管理系统</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+</head>
+<!--/*@thymesVar id="username" type="java.lang.String"*/-->
+<!--/*@thymesVar id="degree" type="cn.linxiuyun.dym.vo.CompletionDegreeVo"*/-->
+<body style="padding-top: 50px">
+<nav class="navbar navbar-inverse navbar-fixed-top ">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">新闻与传播学院党员后台管理系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <th:block th:text="${username}"></th:block></a></li>
+                <li><a>退出</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<nav class="navbar navbar-inverse navbar-fixed-top col-md-2" id="sidebar-wrapper" role="navigation"
+     style="margin-top: 51px;background-color: #f2f2f2;border: none;width: 10%;height: 100%">
+    <ul class="nav sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="adinfo.html">个人信息</a>
+        </li>
+        <li>
+            <a href="adapp.html">入党申请待核实</a>
+        </li>
+        <li>
+            <a href="addans.html">奖惩信息待核实</a>
+        </li>
+        <li>
+            <a href="adrel.html">组织关系调动</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="col-md-10" style="width: 90%;margin-left: 10%;padding: 0px">
+    <nav class="navbar navbar-default" style="border: none;" />
+    <div class="container-fluid">
+        <div class="col-md-12" style="border-bottom: 1px solid #f2f2f2;"><h3 style="margin-top:0px;color: #337ab7;">
+            控制台</h3></div>
+        <div class="col-md-6" style="padding: 40px 50px 20px 50px;">
+            <table class="table table-bordered">
+
+                <!-- On cells (`td` or `th`) -->
+                <tr>
+                    <td>
+                        <div class="col-md-6" style="color: #aeca5b">
+                            <p>个人信息</p>
+                        </div>
+                        <div class="col-md-6" style="color: #77c646">
+                            <h3 class="glyphicon glyphicon-arrow-up" aria-hidden="true"></h3>
+                            <th:block th:text="${degree.getPersonalInfoDegree()}"></th:block>%
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-md-6" style="color: #d68cdf">
+                            <p>入党申请待核实</p>
+                        </div>
+                        <div class="col-md-6" style="color: #d68cdf">
+                            <h3 class="glyphicon glyphicon-arrow-up" aria-hidden="true"></h3>
+                            <th:block th:text="${degree.getJoinApplyDegree()}"></th:block>%
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-md-6" style="color: #3983c2">
+                            <p>奖惩信息待核实</p>
+                        </div>
+                        <div class="col-md-6" style="color: #3983c2">
+                            <h3 class="glyphicon glyphicon-arrow-up" aria-hidden="true"></h3>
+                            <th:block th:text="${degree.getAwardAndPunishDegree()}"></th:block>%
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-md-6" style="color: #f79263">
+                            <p>组织关系调动</p>
+                        </div>
+                        <div class="col-md-6" style="color: #f79263">
+                            <h3 class="glyphicon glyphicon-arrow-up" aria-hidden="true"></h3>
+                            <th:block th:text="${degree.getRelatedDegree()}"></th:block>%
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js" />
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" />
+
+<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+</body>
+</html>
